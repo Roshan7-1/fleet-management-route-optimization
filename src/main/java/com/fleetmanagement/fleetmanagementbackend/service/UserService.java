@@ -2,6 +2,7 @@ package com.fleetmanagement.fleetmanagementbackend.service;
 
 import com.fleetmanagement.fleetmanagementbackend.entity.User;
 import com.fleetmanagement.fleetmanagementbackend.repository.UserRepository;
+import com.fleetmanagement.fleetmanagementbackend.security.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     public User register(User user) {
 
@@ -37,6 +39,6 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
 
-        return "Login Successful";
+        return jwtUtil.generateToken(username);
     }
 }

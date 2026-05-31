@@ -1,5 +1,6 @@
 package com.fleetmanagement.fleetmanagementbackend.controller;
 
+import com.fleetmanagement.fleetmanagementbackend.dto.AuthResponse;
 import com.fleetmanagement.fleetmanagementbackend.dto.LoginRequest;
 import com.fleetmanagement.fleetmanagementbackend.dto.RegisterRequest;
 import com.fleetmanagement.fleetmanagementbackend.entity.User;
@@ -28,10 +29,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
-        return userService.login(
+    public AuthResponse login(@RequestBody LoginRequest request) {
+
+        String token = userService.login(
                 request.getUsername(),
                 request.getPassword()
         );
+
+        return new AuthResponse(token);
     }
 }
