@@ -1,10 +1,11 @@
-/* ====================================
+/* ==========================================
    GLOBAL
-==================================== */
+========================================== */
 
 body {
-  background: #f4f6f9;
-  font-family: "Segoe UI", sans-serif;
+  background: #f8fafc;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  color: #1e293b;
   margin: 0;
   padding: 0;
 }
@@ -13,59 +14,64 @@ body {
   animation: fadeIn 0.4s ease-in-out;
 }
 
+.page-wrapper {
+  padding-top: 25px;
+  padding-bottom: 40px;
+}
+
+.page-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 30px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* ====================================
-   PAGE TITLE
-==================================== */
-
-.page-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 30px;
-}
-
-/* ====================================
+/* ==========================================
    NAVBAR
-==================================== */
-
-/* ===== Modern Navbar ===== */
+========================================== */
 
 .custom-navbar {
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .brand-logo {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: #2563eb !important;
 }
 
 .nav-link {
-  color: #374151 !important;
-  font-weight: 500;
-  margin: 0 6px;
-  padding: 8px 14px !important;
-  border-radius: 10px;
+  color: #475569 !important;
+  font-weight: 600;
+  margin: 0 5px;
+  padding: 10px 16px !important;
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .nav-link:hover {
   background: #eff6ff;
   color: #2563eb !important;
+  transform: translateY(-2px);
 }
 
 .active-link {
@@ -76,154 +82,127 @@ body {
 
 .logout-btn {
   background: #ef4444;
-  color: white;
-  border-radius: 10px;
-  padding: 8px 18px;
+  color: white !important;
+  border-radius: 12px;
+  padding: 10px 18px;
   font-weight: 600;
+  transition: 0.3s;
 }
 
 .logout-btn:hover {
   background: #dc2626;
-  color: white;
+  transform: translateY(-2px);
 }
 
-/* ====================================
-   DASHBOARD CARDS
-==================================== */
+/* ==========================================
+   WELCOME BANNER
+========================================== */
 
 .welcome-banner {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+  );
   color: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0px 8px 20px rgba(37, 99, 235, 0.25);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
 }
 
 .welcome-banner h2 {
-  font-weight: 700;
+  font-size: 2.4rem;
+  font-weight: 800;
 }
+
+.welcome-banner p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin-top: 10px;
+}
+
+/* ==========================================
+   DASHBOARD CARDS
+========================================== */
 
 .stats-card {
   color: white;
+  border-radius: 24px;
   padding: 30px;
-  border-radius: 18px;
   text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.35s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .stats-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.02);
 }
 
 .stats-card h5 {
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .stats-card h2 {
-  font-size: 42px;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.stats-card p {
+  margin-top: 8px;
+  opacity: 0.9;
 }
 
 .vehicles-card {
-  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #60a5fa
+  );
 }
 
 .drivers-card {
-  background: linear-gradient(135deg, #16a34a, #4ade80);
+  background: linear-gradient(
+    135deg,
+    #16a34a,
+    #4ade80
+  );
 }
 
 .trips-card {
-  background: linear-gradient(135deg, #ea580c, #fb923c);
+  background: linear-gradient(
+    135deg,
+    #ea580c,
+    #fb923c
+  );
 }
 
 .fuel-card {
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #a855f7
+  );
 }
 
-.recent-card {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
-}
-
-.recent-card p {
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-/* ====================================
-   TABLES
-==================================== */
-
-.table-container {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.table {
-  margin-bottom: 0;
-}
-
-.table thead {
-  background: #111827;
-  color: white;
-}
-
-.table thead th {
-  padding: 15px;
-  vertical-align: middle;
-}
-
-.table tbody td {
-  vertical-align: middle;
-  padding: 15px;
-}
-
-.table tbody tr:hover {
-  background-color: #eef2ff;
-  transition: 0.2s;
-}
-
-/* ====================================
-   FORMS
-==================================== */
-
-.form-container {
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.form-label {
-  font-weight: 600;
-  color: #374151;
-}
-
-.form-control,
-.form-select {
-  border-radius: 10px;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
-}
-
-/* ====================================
-   BUTTONS
-==================================== */
+/* ==========================================
+   QUICK ACTION BUTTONS
+========================================== */
 
 .btn {
-  border-radius: 10px;
-  font-weight: 500;
+  border-radius: 12px !important;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
 }
 
 .btn-primary {
@@ -252,27 +231,148 @@ body {
   border: none;
 }
 
-.btn-sm {
-  padding: 6px 12px;
+/* ==========================================
+   RECENT ACTIVITY
+========================================== */
+
+.recent-card {
+  background: white;
+  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
-/* ====================================
+.recent-card p {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  color: #334155;
+}
+
+/* ==========================================
+   TABLES
+========================================== */
+
+.table-container {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead {
+  background: #0f172a;
+  color: white;
+}
+
+.table thead th {
+  padding: 18px;
+  font-weight: 700;
+  border: none;
+}
+
+.table tbody td {
+  padding: 16px;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: 0.25s;
+}
+
+.table tbody tr:hover {
+  background: #eff6ff;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status-active,
+.status-available {
+  background: #dcfce7;
+  color: #166534;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-maintenance {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   FORMS
+========================================== */
+
+.form-container {
+  background: white;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-control,
+.form-select {
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+}
+
+/* ==========================================
    ACTION BUTTONS
-==================================== */
+========================================== */
 
 .action-buttons {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
-/* ====================================
-   DASHBOARD QUICK CARDS
-==================================== */
+.btn-sm {
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+/* ==========================================
+   DASHBOARD EXTRA CARDS
+========================================== */
 
 .dashboard-card {
+  background: white;
+  border-radius: 24px;
   border: none;
-  border-radius: 18px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: 0.3s;
 }
 
@@ -281,26 +381,17 @@ body {
 }
 
 .dashboard-card h5 {
-  color: #374151;
+  color: #475569;
 }
 
 .dashboard-card h2 {
   color: #2563eb;
-  font-weight: bold;
+  font-weight: 800;
 }
 
-/* ====================================
-   PAGE WRAPPER
-==================================== */
-
-.page-wrapper {
-  padding-top: 20px;
-  padding-bottom: 30px;
-}
-
-/* ====================================
+/* ==========================================
    RESPONSIVE
-==================================== */
+========================================== */
 
 @media (max-width: 768px) {
 
@@ -308,123 +399,28 @@ body {
     font-size: 2rem;
   }
 
+  .welcome-banner {
+    padding: 25px;
+  }
+
+  .welcome-banner h2 {
+    font-size: 1.8rem;
+  }
+
   .stats-card {
+    min-height: 150px;
     margin-bottom: 15px;
   }
 
-  .navbar-brand {
-    font-size: 1.3rem;
+  .stats-card h2 {
+    font-size: 2.5rem;
   }
 
   .table-container {
     overflow-x: auto;
   }
-}
 
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.form-container {
-  background: #fff;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-.form-label {
-  color: #374151;
-}
-
-.form-control {
-  border-radius: 10px;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-}
-
-.form-control:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 0.15rem rgba(37,99,235,0.2);
-}
-
-.btn-success {
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-.btn-secondary {
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-
-.table-container {
-  background: white;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-.table thead {
-  background: #111827;
-  color: white;
-}
-
-.table thead th {
-  padding: 16px;
-}
-
-.table tbody td {
-  padding: 14px;
-}
-
-.table tbody tr:hover {
-  background: #f8fafc;
-}
-
-.btn-sm {
-  border-radius: 8px;
-}
-
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.form-container {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-.form-label {
-  color: #374151;
-}
-
-.form-control,
-.form-select {
-  border-radius: 10px;
-  padding: 12px;
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 0.15rem rgba(37,99,235,0.2);
-}
-
-.btn-success,
-.btn-secondary {
-  border-radius: 10px;
-  font-weight: 600;
+  .brand-logo {
+    font-size: 1.4rem;
+  }
 }
