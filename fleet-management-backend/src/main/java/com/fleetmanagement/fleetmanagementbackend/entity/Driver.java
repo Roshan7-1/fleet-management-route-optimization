@@ -23,6 +23,8 @@ public class Driver {
     @Column(unique = true, nullable = false)
     private String licenseNumber;
 
+    private String phoneNumber;
+
     private LocalDate licenseExpiry;
 
     private Integer shiftHours;

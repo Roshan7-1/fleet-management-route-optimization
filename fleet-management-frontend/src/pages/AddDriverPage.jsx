@@ -9,12 +9,15 @@ function AddDriverPage() {
     name: "",
     licenseNumber: "",
     phoneNumber: "",
+    licenseExpiry: "",
+    shiftHours: "",
+    status: "AVAILABLE"
   });
 
   const handleChange = (e) => {
     setDriver({
       ...driver,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -24,94 +27,99 @@ function AddDriverPage() {
     try {
       await api.post("/api/drivers", driver);
 
-      alert("✅ Driver Added Successfully");
+      alert("Driver Added Successfully");
       navigate("/drivers");
     } catch (error) {
       console.error(error);
-      alert("❌ Failed to Add Driver");
+      alert("Failed to Add Driver");
     }
   };
 
   return (
     <div className="container mt-4">
+      <h2>Add Driver</h2>
 
-      <div className="page-header mb-4">
-        <h1 className="page-title">👨‍✈️ Add New Driver</h1>
-        <p className="text-muted">
-          Register a new driver in the fleet management system.
-        </p>
-      </div>
+      <form onSubmit={saveDriver}>
 
-      <div className="form-container">
+        <div className="mb-3">
+          <label className="form-label">Driver Name</label>
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            value={driver.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <form onSubmit={saveDriver}>
+        <div className="mb-3">
+          <label className="form-label">License Number</label>
+          <input
+            type="text"
+            name="licenseNumber"
+            className="form-control"
+            value={driver.licenseNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div className="mb-3">
-            <label className="form-label fw-semibold">
-              Driver Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={driver.name}
-              placeholder="Enter Driver Name"
-              className="form-control"
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Phone Number</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            className="form-control"
+            value={driver.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div className="mb-3">
-            <label className="form-label fw-semibold">
-              License Number
-            </label>
-            <input
-              type="text"
-              name="licenseNumber"
-              value={driver.licenseNumber}
-              placeholder="MH123456789"
-              className="form-control"
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label">License Expiry</label>
+          <input
+            type="date"
+            name="licenseExpiry"
+            className="form-control"
+            value={driver.licenseExpiry}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div className="mb-4">
-            <label className="form-label fw-semibold">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              value={driver.phoneNumber}
-              placeholder="9876543210"
-              className="form-control"
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Shift Hours</label>
+          <input
+            type="number"
+            name="shiftHours"
+            className="form-control"
+            value={driver.shiftHours}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div className="d-flex gap-2">
-            <button
-              type="submit"
-              className="btn btn-success px-4"
-            >
-              Save Driver
-            </button>
+        <div className="mb-3">
+          <label className="form-label">Status</label>
+          <select
+            name="status"
+            className="form-select"
+            value={driver.status}
+            onChange={handleChange}
+          >
+            <option value="AVAILABLE">AVAILABLE</option>
+            <option value="ON_TRIP">ON_TRIP</option>
+            <option value="OFF_DUTY">OFF_DUTY</option>
+          </select>
+        </div>
 
-            <button
-              type="button"
-              className="btn btn-secondary px-4"
-              onClick={() => navigate("/drivers")}
-            >
-              Cancel
-            </button>
-          </div>
+        <button className="btn btn-success">
+          Save Driver
+        </button>
 
-        </form>
-
-      </div>
-
+      </form>
     </div>
   );
 }
