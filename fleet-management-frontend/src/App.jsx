@@ -27,6 +27,8 @@ import AddMaintenancePage from "./pages/AddMaintenancePage";
 import EditMaintenancePage from "./pages/EditMaintenancePage";
 
 import EditVehiclePage from "./pages/EditVehiclePage";
+import RouteOptimizationPage
+from "./pages/RouteOptimizationPage";
 function AppContent() {
   const location = useLocation();
 
@@ -181,6 +183,10 @@ function AppContent() {
       <EditVehiclePage />
     </ProtectedRoute>
   }
+/>
+<Route
+    path="/routes"
+    element={<RouteOptimizationPage />}
 />
       </Routes>
     </>

@@ -113,6 +113,13 @@ function Navbar() {
               Maintenance
             </NavLink>
 
+            <Link
+    to="/routes"
+    className="nav-link"
+>
+    Routes
+</Link>
+
           </div>
 
           <button
