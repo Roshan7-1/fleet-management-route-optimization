@@ -22,7 +22,8 @@ public class Trip {
 
     private Double distance;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")

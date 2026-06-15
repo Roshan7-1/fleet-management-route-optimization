@@ -16,10 +16,11 @@ import java.util.List;
 public class TripController {
 
     private final TripService tripService;
-@PostMapping
-public Trip createTrip(@RequestBody Trip trip) {
-    return tripService.createTrip(trip);
-}
+
+    @PostMapping
+    public Trip createTrip(@RequestBody Trip trip) {
+        return tripService.createTrip(trip);
+    }
 
     @GetMapping
     public List<Trip> getAllTrips() {
@@ -43,5 +44,22 @@ public Trip createTrip(@RequestBody Trip trip) {
     public String deleteTrip(@PathVariable Long id) {
         tripService.deleteTrip(id);
         return "Trip deleted successfully";
+    }
+
+    // ================= DELIVERY WORKFLOW =================
+
+    @PutMapping("/{id}/dispatch")
+    public Trip dispatchTrip(@PathVariable Long id) {
+        return tripService.dispatchTrip(id);
+    }
+
+    @PutMapping("/{id}/start")
+    public Trip startTrip(@PathVariable Long id) {
+        return tripService.startTrip(id);
+    }
+
+    @PutMapping("/{id}/complete")
+    public Trip completeTrip(@PathVariable Long id) {
+        return tripService.completeTrip(id);
     }
 }
