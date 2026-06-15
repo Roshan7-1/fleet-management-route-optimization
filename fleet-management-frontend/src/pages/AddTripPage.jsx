@@ -9,14 +9,12 @@ function AddTripPage() {
   const [drivers, setDrivers] = useState([]);
 
   const [trip, setTrip] = useState({
-    source: "",
-    destination: "",
-    distance: "",
-    status: "",
-    vehicleId: "",
-    driverId: ""
-  });
-
+  source: "",
+  destination: "",
+  distance: "",
+  vehicleId: "",
+  driverId: ""
+});
   useEffect(() => {
     fetchVehicles();
     fetchDrivers();
@@ -50,18 +48,17 @@ function AddTripPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const tripData = {
-      source: trip.source,
-      destination: trip.destination,
-      distance: Number(trip.distance),
-      status: trip.status,
-      vehicle: {
-        id: Number(trip.vehicleId)
-      },
-      driver: {
-        id: Number(trip.driverId)
-      }
-    };
+const tripData = {
+  source: trip.source,
+  destination: trip.destination,
+  distance: Number(trip.distance),
+  vehicle: {
+    id: Number(trip.vehicleId)
+  },
+  driver: {
+    id: Number(trip.driverId)
+  }
+};
 
     try {
       await api.post("/api/trips", tripData);
@@ -113,7 +110,7 @@ function AddTripPage() {
           />
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label className="form-label">Status</label>
           <select
             name="status"
@@ -127,7 +124,7 @@ function AddTripPage() {
             <option value="IN_PROGRESS">IN_PROGRESS</option>
             <option value="COMPLETED">COMPLETED</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="mb-3">
           <label className="form-label">Vehicle</label>

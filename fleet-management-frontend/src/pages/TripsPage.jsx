@@ -33,9 +33,35 @@ function TripsPage() {
     }
   };
 
+  const dispatchTrip = async (id) => {
+    try {
+      await api.put(`/api/trips/${id}/dispatch`);
+      fetchTrips();
+    } catch (error) {
+      console.error("Error dispatching trip:", error);
+    }
+  };
+
+  const startTrip = async (id) => {
+    try {
+      await api.put(`/api/trips/${id}/start`);
+      fetchTrips();
+    } catch (error) {
+      console.error("Error starting trip:", error);
+    }
+  };
+
+  const completeTrip = async (id) => {
+    try {
+      await api.put(`/api/trips/${id}/complete`);
+      fetchTrips();
+    } catch (error) {
+      console.error("Error completing trip:", error);
+    }
+  };
+
   return (
     <div className="container mt-4">
-
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Trips Management</h2>
 
@@ -69,7 +95,32 @@ function TripsPage() {
                 <td>{trip.source}</td>
                 <td>{trip.destination}</td>
                 <td>{trip.distance}</td>
-                <td>{trip.status}</td>
+
+                <td>
+                  {trip.status === "UNASSIGNED" && (
+                    <span className="badge bg-warning text-dark">
+                      UNASSIGNED
+                    </span>
+                  )}
+
+                  {trip.status === "DISPATCHED" && (
+                    <span className="badge bg-primary">
+                      DISPATCHED
+                    </span>
+                  )}
+
+                  {trip.status === "IN_TRANSIT" && (
+                    <span className="badge bg-info text-dark">
+                      IN TRANSIT
+                    </span>
+                  )}
+
+                  {trip.status === "DELIVERED" && (
+                    <span className="badge bg-success">
+                      DELIVERED
+                    </span>
+                  )}
+                </td>
 
                 <td>
                   {trip.vehicle
@@ -86,17 +137,44 @@ function TripsPage() {
                 <td>
                   <Link
                     to={`/trips/edit/${trip.id}`}
-                    className="btn btn-warning btn-sm me-2"
+                    className="btn btn-warning btn-sm me-1"
                   >
                     Edit
                   </Link>
 
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-danger btn-sm me-1"
                     onClick={() => deleteTrip(trip.id)}
                   >
                     Delete
                   </button>
+
+                  {trip.status === "UNASSIGNED" && (
+                    <button
+                      className="btn btn-primary btn-sm me-1"
+                      onClick={() => dispatchTrip(trip.id)}
+                    >
+                      Dispatch
+                    </button>
+                  )}
+
+                  {trip.status === "DISPATCHED" && (
+                    <button
+                      className="btn btn-info btn-sm me-1"
+                      onClick={() => startTrip(trip.id)}
+                    >
+                      Start
+                    </button>
+                  )}
+
+                  {trip.status === "IN_TRANSIT" && (
+                    <button
+                      className="btn btn-success btn-sm"
+                      onClick={() => completeTrip(trip.id)}
+                    >
+                      Complete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))
@@ -109,7 +187,6 @@ function TripsPage() {
           )}
         </tbody>
       </table>
-
     </div>
   );
 }
