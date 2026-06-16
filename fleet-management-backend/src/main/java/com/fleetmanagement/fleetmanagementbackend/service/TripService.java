@@ -1,5 +1,6 @@
 package com.fleetmanagement.fleetmanagementbackend.service;
 
+import com.fleetmanagement.fleetmanagementbackend.entity.DeliveryStatus;
 import com.fleetmanagement.fleetmanagementbackend.entity.Trip;
 import com.fleetmanagement.fleetmanagementbackend.repository.TripRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class TripService {
 
     public Trip createTrip(Trip trip) {
 
-        trip.setStatus("UNASSIGNED");
+        trip.setStatus(DeliveryStatus.UNASSIGNED);
 
         return tripRepository.save(trip);
     }
@@ -45,5 +46,32 @@ public class TripService {
 
     public void deleteTrip(Long id) {
         tripRepository.deleteById(id);
+    }
+
+    public Trip dispatchTrip(Long id) {
+
+        Trip trip = getTripById(id);
+
+        trip.setStatus(DeliveryStatus.DISPATCHED);
+
+        return tripRepository.save(trip);
+    }
+
+    public Trip startTrip(Long id) {
+
+        Trip trip = getTripById(id);
+
+        trip.setStatus(DeliveryStatus.IN_TRANSIT);
+
+        return tripRepository.save(trip);
+    }
+
+    public Trip completeTrip(Long id) {
+
+        Trip trip = getTripById(id);
+
+        trip.setStatus(DeliveryStatus.DELIVERED);
+
+        return tripRepository.save(trip);
     }
 }

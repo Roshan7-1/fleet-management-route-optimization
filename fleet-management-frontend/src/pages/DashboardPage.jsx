@@ -8,6 +8,7 @@ function DashboardPage() {
     totalDrivers: 0,
     totalTrips: 0,
     totalFuelRecords: 0,
+    totalRoutes: 0,
   });
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function DashboardPage() {
         totalDrivers: response.data.totalDrivers,
         totalTrips: response.data.totalTrips,
         totalFuelRecords: response.data.totalFuelRecords,
+        totalRoutes: response.data.totalRoutes,
       });
     } catch (error) {
       console.error("Dashboard Error:", error);
@@ -96,6 +98,26 @@ function DashboardPage() {
           </Link>
         </div>
 
+        {/* Route Card */}
+        <div className="col-md-3">
+          <Link
+            to="/routes"
+            className="text-decoration-none"
+          >
+            <div
+              className="stats-card"
+              style={{
+                background:
+                  "linear-gradient(135deg,#0ea5e9,#2563eb)",
+                color: "white",
+              }}
+            >
+              <h5>🛣 Route Optimizations</h5>
+              <h2>{stats.totalRoutes}</h2>
+            </div>
+          </Link>
+        </div>
+
       </div>
 
       {/* Quick Actions */}
@@ -142,7 +164,56 @@ function DashboardPage() {
         </div>
       </div>
 
-      {/* Activity Section */}
+      {/* Route Optimization Section */}
+      <div className="mt-5">
+
+        <h3 className="mb-3">
+          🛣️ Route Optimization
+        </h3>
+
+        <div
+          className="card border-0 shadow-sm"
+          style={{
+            borderRadius: "15px"
+          }}
+        >
+          <div className="card-body">
+
+            <div className="row align-items-center">
+
+              <div className="col-md-8">
+
+                <h4 className="fw-bold">
+                  Optimize Delivery Routes
+                </h4>
+
+                <p className="text-muted mb-0">
+                  Plan the most efficient route for deliveries,
+                  reduce travel distance, save fuel costs,
+                  and improve fleet productivity.
+                </p>
+
+              </div>
+
+              <div className="col-md-4 text-end">
+
+                <Link
+                  to="/routes"
+                  className="btn btn-success btn-lg"
+                >
+                  🛣 Open Route Optimizer
+                </Link>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      {/* Recent Activity */}
       <div className="recent-section mt-5">
 
         <h3 className="mb-3">
@@ -151,13 +222,25 @@ function DashboardPage() {
 
         <div className="recent-card">
 
-          <p>🚚 Vehicles Registered: {stats.totalVehicles}</p>
+          <p>
+            🚚 Vehicles Registered: {stats.totalVehicles}
+          </p>
 
-          <p>👨‍✈️ Active Drivers: {stats.totalDrivers}</p>
+          <p>
+            👨‍✈️ Active Drivers: {stats.totalDrivers}
+          </p>
 
-          <p>🛣️ Trips Created: {stats.totalTrips}</p>
+          <p>
+            🛣️ Trips Created: {stats.totalTrips}
+          </p>
 
-          <p>⛽ Fuel Records Added: {stats.totalFuelRecords}</p>
+          <p>
+            ⛽ Fuel Records Added: {stats.totalFuelRecords}
+          </p>
+
+          <p>
+            🛣 Route Optimizations: {stats.totalRoutes}
+          </p>
 
         </div>
 

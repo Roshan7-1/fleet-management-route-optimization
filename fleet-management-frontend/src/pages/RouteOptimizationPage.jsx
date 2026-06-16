@@ -4,7 +4,11 @@ import axios from "axios";
 function RouteOptimizationPage() {
 
     const [locations, setLocations] = useState([
-        { locationName: "", latitude: "", longitude: "" }
+        {
+            locationName: "",
+            latitude: "",
+            longitude: ""
+        }
     ]);
 
     const [optimizedRoute, setOptimizedRoute] = useState([]);
@@ -23,7 +27,6 @@ function RouteOptimizationPage() {
     const handleChange = (index, field, value) => {
 
         const updated = [...locations];
-
         updated[index][field] = value;
 
         setLocations(updated);
@@ -44,100 +47,176 @@ function RouteOptimizationPage() {
 
             console.error(error);
 
-            alert("Optimization failed");
+            alert("Route Optimization Failed");
         }
     };
 
     return (
         <div className="container mt-4">
 
-            <h2>Route Optimization</h2>
+            {/* Header Card */}
+            <div className="card bg-primary text-white shadow-lg border-0 mb-4">
+                <div className="card-body">
+                    <h2 className="fw-bold">
+                        🛣 Route Optimization
+                    </h2>
 
-            {locations.map((location, index) => (
+                    <p className="mb-0">
+                        Find the most efficient delivery route and
+                        reduce travel distance.
+                    </p>
+                </div>
+            </div>
 
-                <div key={index} className="row mb-2">
+            {/* Input Section */}
+            <div className="card shadow-sm border-0 mb-4">
 
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            placeholder="Location Name"
-                            value={location.locationName}
-                            onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "locationName",
-                                    e.target.value
-                                )
-                            }
-                        />
-                    </div>
+                <div className="card-body">
 
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            placeholder="Latitude"
-                            value={location.latitude}
-                            onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "latitude",
-                                    e.target.value
-                                )
-                            }
-                        />
-                    </div>
+                    <h5 className="mb-3">
+                        📍 Delivery Locations
+                    </h5>
 
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            placeholder="Longitude"
-                            value={location.longitude}
-                            onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "longitude",
-                                    e.target.value
-                                )
-                            }
-                        />
+                    {locations.map((location, index) => (
+
+                        <div key={index} className="row mb-3">
+
+                            <div className="col-md-4">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Location Name"
+                                    value={location.locationName}
+                                    onChange={(e) =>
+                                        handleChange(
+                                            index,
+                                            "locationName",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                            <div className="col-md-4">
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Latitude"
+                                    value={location.latitude}
+                                    onChange={(e) =>
+                                        handleChange(
+                                            index,
+                                            "latitude",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                            <div className="col-md-4">
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Longitude"
+                                    value={location.longitude}
+                                    onChange={(e) =>
+                                        handleChange(
+                                            index,
+                                            "longitude",
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+
+                        </div>
+
+                    ))}
+
+                    <button
+                        className="btn btn-primary me-2"
+                        onClick={addLocation}
+                    >
+                        ➕ Add Location
+                    </button>
+
+                    <button
+                        className="btn btn-success"
+                        onClick={optimizeRoute}
+                    >
+                        🛣 Optimize Route
+                    </button>
+
+                </div>
+
+            </div>
+
+            {/* Statistics */}
+            {optimizedRoute.length > 0 && (
+
+                <div className="row mb-4">
+
+                    <div className="col-md-4">
+
+                        <div className="card bg-success text-white shadow border-0">
+
+                            <div className="card-body text-center">
+
+                                <h6>Total Stops</h6>
+
+                                <h2>
+                                    {optimizedRoute.length}
+                                </h2>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
-            ))}
 
-            <button
-                className="btn btn-primary me-2"
-                onClick={addLocation}
-            >
-                Add Location
-            </button>
+            )}
 
-            <button
-                className="btn btn-success"
-                onClick={optimizeRoute}
-            >
-                Optimize Route
-            </button>
+            {/* Optimized Route */}
+            {optimizedRoute.length > 0 && (
 
-            <hr />
+                <div className="card shadow-sm border-0">
 
-            <h4>Optimized Route</h4>
+                    <div className="card-body">
 
-            <ul className="list-group">
+                        <h4 className="mb-3">
+                            🛣 Optimized Route
+                        </h4>
 
-                {optimizedRoute.map((location) => (
+                        <ul className="list-group">
 
-                    <li
-                        key={location.stopOrder}
-                        className="list-group-item"
-                    >
-                        Stop {location.stopOrder} :
-                        {" "}
-                        {location.locationName}
-                    </li>
-                ))}
+                            {optimizedRoute.map((location) => (
 
-            </ul>
+                                <li
+                                    key={location.stopOrder}
+                                    className="list-group-item d-flex justify-content-between align-items-center"
+                                >
+
+                                    <span>
+                                        📍 {location.locationName}
+                                    </span>
+
+                                    <span className="badge bg-primary">
+                                        Stop {location.stopOrder}
+                                    </span>
+
+                                </li>
+
+                            ))}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            )}
 
         </div>
     );

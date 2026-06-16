@@ -5,6 +5,8 @@ import com.fleetmanagement.fleetmanagementbackend.repository.VehicleRepository;
 import com.fleetmanagement.fleetmanagementbackend.repository.TripRepository;
 import com.fleetmanagement.fleetmanagementbackend.repository.FuelRecordRepository;
 import com.fleetmanagement.fleetmanagementbackend.repository.MaintenanceRecordRepository;
+import com.fleetmanagement.fleetmanagementbackend.repository.DeliveryTaskRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ public class DashboardService {
     private final TripRepository tripRepository;
     private final FuelRecordRepository fuelRecordRepository;
     private final MaintenanceRecordRepository maintenanceRecordRepository;
+    private final DeliveryTaskRepository deliveryTaskRepository;
 
     public Map<String, Long> getDashboardStats() {
 
@@ -31,6 +34,10 @@ public class DashboardService {
         stats.put("totalFuelRecords", fuelRecordRepository.count());
         stats.put("totalMaintenanceRecords",
                 maintenanceRecordRepository.count());
+
+        // Route Optimization Count
+        stats.put("totalRoutes",
+                deliveryTaskRepository.count());
 
         return stats;
     }
